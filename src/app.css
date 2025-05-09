@@ -1,3 +1,11 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin '@tailwindcss/typography';
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
+.Plus-Jakarta-Sans{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.Permanent-Marker{
+  font-family: 'Permanent Marker', cursive;
+}
