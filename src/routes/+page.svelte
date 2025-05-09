@@ -35,8 +35,8 @@
 		</div>
 
 		<!-- Hero header text -->
-		<div class="w-full max-w-[200px] md:max-w-[500px]">
-			<img src={HeroText} alt="hero text" class="w-full" />
+		<div class="w-full md:max-w-[500px]">
+			<h1 class="Permanent-Marker text-[50px] lg:text-[70px]">Our Flavours<br/>Served Bold!</h1>
 		</div>
 
 		<!-- Tagline -->
@@ -190,8 +190,8 @@
 	<div class="md:max-w-209 w-full rounded-4xl bg-[#FEF0EA] p-10">
 		<div class="flex flex-col items-center gap-20 md:flex-row">
 			<!-- Left: Image beside form -->
-			<div class="w-full md:max-w-50">
-				<img src={ContactImg} alt="contact-img" class="rounded-4xl" />
+			<div class="w-full md:max-w-50 overflow-hidden rounded-4xl">
+				<img src={ContactImg} alt="contact-img" class="object-contain" />
 			</div>
 
 			<!-- Right: Signup form content -->
@@ -222,7 +222,7 @@
 	</div>
 
 	<!-- Social media follow section -->
-	<h1 class="Permanent-Marker text-5xl font-extrabold text-[#FEE6B4] italic text-center flex justify-center">Follow The Story</h1>
+	<h1 class="Permanent-Marker text-5xl font-extrabold text-[#FEE6B4] text-center flex justify-center">Follow The Story</h1>
 	<ul class="Plus Jakarta-Sans text-center text-sm font-light text-white underline">
 		<li><a href="#">Instagram</a></li>
 		<li><a href="#">Twitter</a></li>
