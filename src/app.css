@@ -4,12 +4,9 @@
 @plugin '@tailwindcss/typography';
 
 
-.Plus-Jakarta-Sans{
-    font-family: 'Plus Jakarta Sans', sans-serif;
+.Plus-Jakarta-Sans {
+	font-family: 'Plus Jakarta Sans', sans-serif;
 }
-.Permanent-Marker{
-  font-family: 'Permanent Marker', cursive;
-  font-weight: 400;
-  font-style: normal;
+.Permanent-Marker {
+	font-family: 'Permanent Marker', cursive;
 }
-
