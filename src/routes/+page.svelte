@@ -1,6 +1,5 @@
-<script>
+<script lang="ts">
 	import Name from '$lib/assets/yaji-logo.png';
-	import HeroText from '$lib/assets/Our Flavours Served Bold!.png';
 	import PuffPuff from '$lib/assets/yaggi-image.png';
 	import HeroRice from '$lib/assets/hero-rice.png';
 	import Jrice from '$lib/assets/jrice.png';
@@ -12,10 +11,36 @@
 	import Pot from '$lib/assets/Pot.png';
 	import ContactImg from '$lib/assets/contact-img.png';
 	import Arrow from '$lib/assets/Arrow.png';
+	import ArrowLeft from '$lib/assets/Arrow---Left-3.png';
+
+	const steps = [
+		{ img: Jrice, label: 'Start with a Base', color: '#EE3300' },
+		{ img: Protein, label: 'Choose Protein', color: '#4C0703' },
+		{ img: Sauce, label: 'Add Sauce', color: '#FBAB1E' },
+		{ img: Yam, label: 'Pick Slides', color: '#104E44' },
+		{ img: Pepper, label: 'Garnish & Finish', color: '#EA6113' }
+	];
+
+	let currentIndex = 0;
+
+	const nextSlide = () => {
+		currentIndex = (currentIndex + 1) % steps.length;
+	};
+
+	const prevSlide = () => {
+		currentIndex = (currentIndex - 1 + steps.length) % steps.length;
+	};
+
+	// Auto slide change every 5 seconds
+	import { onMount } from 'svelte';
+	onMount(() => {
+		const interval = setInterval(nextSlide, 5000);
+		return () => clearInterval(interval);
+	});
 </script>
 
 <!-- ============================Hero section======================== -->
-<section class="relative min-h-screen overflow-x-hidden py-20 pb-56 flex flex-col gap-30 md:gap-0">
+<section class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0">
 	<!-- Background image -->
 	<div
 		class="absolute inset-0 bg-cover bg-center"
@@ -30,25 +55,27 @@
 		class="relative z-10 flex h-full flex-col items-center justify-center gap-10 text-center text-white md:gap-20"
 	>
 		<!-- Yaji logo -->
-		<div class="w-full max-w-[100px] md:max-w-[200px]">
+		<div class="w-full max-w-[127px] md:max-w-[270px]">
 			<img src={Name} alt="name" class="w-full" />
 		</div>
 
 		<!-- Hero header text -->
 		<div class="w-full md:max-w-[500px]">
-			<h1 class="Permanent-Marker text-[50px] lg:text-[70px]">Our Flavours<br/>Served Bold!</h1>
+			<h1 class="Permanent-Marker text-[40px] lg:text-[70px]">Our Flavours<br />Served Bold!</h1>
 		</div>
 
 		<!-- Tagline -->
-		<p class="Plus-Jakarta-Sans text-[20px] font-[500]">
+		<p class=" text-[15px] font-[600] lg:text-3xl">
 			We bring you vibrant Nigerian Flavours<br />
 			with Modern Convenience.
 		</p>
 
 		<!-- Opening notice and location -->
-		<div class="flex flex-col text-sm">
+		<div class="flex h-[60px] w-32 flex-col text-sm md:h-20 md:w-[173px] md:text-lg">
 			<p class="rounded-t-xl bg-[#FBAB13] px-2 py-1">Opening Soon</p>
-			<p class="rounded-b-xl bg-white px-2 py-1 text-black uppercase">from naija to dc!</p>
+			<p class="rounded-b-xl bg-white px-2 py-1 text-[10px] text-black uppercase md:text-sm">
+				from naija to dc!
+			</p>
 		</div>
 	</div>
 
@@ -91,14 +118,16 @@
 
 <!-- ===============Introductory description============== -->
 <section
-	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4]"
+	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20"
 >
 	<!-- Section heading -->
-	<h1 class="Permanent-Marker text-5xl font-extrabold text-[#4C0703]">The Yaji Way!</h1>
+	<h1 class="Permanent-Marker text-[40px] font-medium text-[#4C0703] md:text-[70px]">
+		The Yaji Way!
+	</h1>
 
 	<!-- Introductory description about Yaji's concept -->
 	<div
-		class="Plus-Jakarta-Sans flex w-90 flex-col gap-5 text-center text-lg font-medium text-[#4C0703] md:w-109"
+		class=" flex w-90 flex-col gap-5 text-center text-lg font-medium text-[#4C0703] md:w-109 md:text-3xl"
 	>
 		<p>
 			Yaji is the next evolution of West African flavour—a fast-casual restaurant built around bold,
@@ -109,45 +138,61 @@
 	</div>
 
 	<!-- Steps to build a Yaji meal: base, protein, sauce, sides, garnish -->
-	<div class="flex flex-row gap-3">
-		<!-- Step 1: Base -->
-		<div class="Plus-Jakarta-Sans flex flex-col items-center justify-center gap-3 text-white">
-			<div class="w-40">
-				<img src={Jrice} alt="food" class="w-full" />
+	<!-- Desktop View: Grid Layout -->
+	<div class="hidden gap-3 lg:flex lg:flex-row">
+		{#each steps as step}
+			<div class=" flex flex-col items-center justify-center gap-3 text-white">
+				<div class="max-w-50 w-full">
+					<img src={step.img} alt="food" class="w-full" />
+				</div>
+				<p class="w-35 rounded-lg py-3 text-center text-[16px]" style="background-color: {step.color};">
+					{step.label}
+				</p>
 			</div>
-			<p class="w-35 rounded-lg bg-[#EE3300] py-3 text-center text-sm">Start with a Base</p>
-		</div>
+		{/each}
+	</div>
 
-		<!-- Step 2: Protein -->
-		<div class="Plus-Jakarta-Sans flex flex-col items-center justify-center gap-3 text-white">
-			<div class="w-40">
-				<img src={Protein} alt="food" class="w-full" />
+	<!-- Mobile View: Carousel -->
+	<div class="relative mx-auto w-full max-w-md px-5 py-16 lg:hidden">
+		<div class=" relative w-full overflow-hidden">
+			<div
+				class="flex w-full transition-transform duration-500 ease-in-out"
+				style="transform: translateX(-{currentIndex * 100}%)"
+			>
+				{#each steps as step, index}
+					<div class=" h-auto w-full flex-shrink-0 rounded-3xl bg-white">
+						<div class="flex h-full w-full flex-col justify-center gap-9 py-9">
+							<div class="mx-auto max-w-50">
+								<img src={step.img} alt={step.label} class="h-full w-full object-cover" />
+							</div>
+							<div class="relative flex flex-col gap-9">
+								<div
+									class="bg-opacity-50 mx-auto w-[50%] transform rounded-lg p-4 shadow-lg"
+									style="background-color: {step.color}"
+								>
+									<p class="text-center text-white text-sm">{step.label}</p>
+								</div>
+								<div class="flex justify-center gap-10">
+									<button
+										class="h-12 w-12 transform rounded-full bg-[#F2F4F7] shadow-lg"
+										on:click={prevSlide}
+										aria-label="Previous"
+									>
+										<img src={ArrowLeft} alt="arrow" class="mx-auto" />
+									</button>
+									<button
+										class="h-12 w-12 transform rounded-full bg-[#F76631] shadow-lg"
+										on:click={nextSlide}
+										aria-label="Next"
+									>
+										<img src={Arrow} alt="arrow" class="mx-auto" />
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				{/each}
 			</div>
-			<p class="w-35 rounded-lg bg-[#4C0703] py-3 text-center text-sm">Choose Protein</p>
-		</div>
-
-		<!-- Step 3: Sauce -->
-		<div class="Plus-Jakarta-Sans flex flex-col items-center justify-center gap-3 text-white">
-			<div class="w-40">
-				<img src={Sauce} alt="food" class="w-full" />
-			</div>
-			<p class="w-35 rounded-lg bg-[#FBAB1E] py-3 text-center text-sm">Add Sauce</p>
-		</div>
-
-		<!-- Step 4: Sides -->
-		<div class="Plus-Jakarta-Sans flex flex-col items-center justify-center gap-3 text-white">
-			<div class="w-40">
-				<img src={Yam} alt="food" class="w-full" />
-			</div>
-			<p class="w-35 rounded-lg bg-[#104E44] py-3 text-center text-sm">Pick Slides</p>
-		</div>
-
-		<!-- Step 5: Garnish -->
-		<div class="Plus-Jakarta-Sans flex flex-col items-center justify-center gap-3 text-white">
-			<div class="w-40">
-				<img src={Pepper} alt="food" class="w-full" />
-			</div>
-			<p class="w-35 rounded-lg bg-[#EA6113] py-3 text-center text-sm">Garnish & Finish</p>
 		</div>
 	</div>
 </section>
@@ -168,10 +213,10 @@
 		</div>
 
 		<!-- Section heading -->
-		<h1 class="Permanent-Marker text-5xl font-extrabold">Our Story</h1>
+		<h1 class="Permanent-Marker text-[40px] font-medium md:text-[70px]">Our Story</h1>
 
 		<!-- Story content describing the inspiration behind Yaji -->
-		<div class="Plus-Jakarta-Sans flex md:w-180 w-[80%] flex-col gap-10 md:text-2xl text-xl font-medium">
+		<div class=" flex w-[80%] flex-col gap-10 text-xl font-medium md:w-180 md:text-3xl">
 			<p>
 				Yaji was born from a craving—something deeper than hunger. A craving for food that feels
 				familiar yet fresh, rooted in heritage but made for now. Inspired by the bold heat of suya
@@ -184,37 +229,38 @@
 
 <!-- ============contact section============== -->
 <section
-	class="relative z-0 flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#4C0703] px-10"
+	class="relative z-0 flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#4C0703] px-10 py-20"
 >
 	<!-- Contact form card -->
-	<div class="md:max-w-209 w-full rounded-4xl bg-[#FEF0EA] p-10">
-		<div class="flex flex-col items-center gap-20 md:flex-row">
+	<div class="w-full rounded-4xl bg-[#FEF0EA] p-7 md:max-w-209">
+		<div class="flex flex-col items-center gap-5 md:flex-row lg:gap-20">
 			<!-- Left: Image beside form -->
-			<div class="w-full md:max-w-50 overflow-hidden rounded-4xl">
+			<div class="w-full overflow-hidden rounded-4xl md:max-w-50">
 				<img src={ContactImg} alt="contact-img" class="object-contain" />
 			</div>
 
 			<!-- Right: Signup form content -->
-			<div class="Plus-Jakarta-Sans">
-				<h1 class="text-3xl font-medium text-[#4C0703]">Get the first taste!</h1>
-				<p class="text-xl font-normal text-[#4C0703]">
-					Be the first to know when we open <br />
-					Sign up to join our waitlist
+			<div class=" w-full text-center md:text-left">
+				<h1 class="text-xl font-[600] text-[#4C0703] md:text-3xl">Get the first taste!</h1>
+				<p class="text-sm font-normal text-[#4C0703] md:w-90 md:text-xl">
+					Be the first to know when we open Sign up to join our waitlist
 				</p>
 
 				<!-- Email input and submit button -->
-				<div class="mt-10 flex md:w-full w-[100%] rounded-2xl border border-[#f766315e] bg-white p-1">
+				<div
+					class="mt-10 flex w-[100%] rounded-2xl border border-[#f766315e] bg-white p-1 md:w-full items-center h-[41px] md:h-16"
+				>
 					<input
 						type="email"
 						placeholder="your.email@example.com"
-						class="h-12 w-70 border-0 bg-white"
+						class="h-4 md:h-6 w-[90%] border-0 bg-white text-black focus:outline-none focus:ring-0 outline-white"
 					/>
 					<button
 						type="button"
-						class="flex w-full flex-row items-center justify-center rounded-2xl bg-[#F76631] text-white"
+						class="flex flex-row items-center justify-center md:rounded-2xl rounded-lg bg-[#F76631] text-white w-[82px] md:w-[160px] h-8 md:h-14"
 					>
-						<span>Submit</span>
-						<img src={Arrow} alt="arrow" />
+						<span class="text-[10px] md:text-[16px]">Submit</span>
+						<img src={Arrow} alt="arrow" class="w-3 md:w-6" />
 					</button>
 				</div>
 			</div>
@@ -222,8 +268,12 @@
 	</div>
 
 	<!-- Social media follow section -->
-	<h1 class="Permanent-Marker text-5xl font-extrabold text-[#FEE6B4] text-center flex justify-center">Follow The Story</h1>
-	<ul class="Plus Jakarta-Sans text-center text-sm font-light text-white underline">
+	<h1
+		class="Permanent-Marker flex justify-center text-center text-4xl font-medium text-[#FEE6B4] md:text-5xl"
+	>
+		Follow The Story
+	</h1>
+	<ul class="Plus Jakarta-Sans text-center text-2xl font-light text-white underline md:text-sm">
 		<li><a href="#">Instagram</a></li>
 		<li><a href="#">Twitter</a></li>
 		<li><a href="#">Facebook</a></li>
