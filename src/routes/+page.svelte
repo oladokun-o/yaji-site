@@ -159,7 +159,7 @@
 
 <!-- ===============Introductory description============== -->
 <section
-	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20 md:gap-5 xl:gap-10"
+	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20 md:gap-5 xl:gap-10 pt-20 md:pt-0"
 >
 	<!-- Section heading -->
 	<h1 class="Permanent-Marker text-[40px] font-medium text-[#4C0703] 2xl:text-[70px]">
