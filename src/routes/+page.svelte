@@ -1,117 +1,158 @@
 <script lang="ts">
-	import Name from '$lib/assets/yaji-logo.png';
-	import PuffPuff from '$lib/assets/yaggi-image.png';
+	import TextLogo from '$lib/assets/text-logo.svg';
+	import Side from '$lib/assets/yaggi-image.png';
 	import HeroRice from '$lib/assets/hero-rice.png';
-	import Jrice from '$lib/assets/jrice.png';
-	import Pepper from '$lib/assets/pepper.png';
+	import Base from '$lib/assets/jrice.png';
+	import Garnish from '$lib/assets/pepper.png';
 	import Sauce from '$lib/assets/sauce.png';
-	import Yam from '$lib/assets/yam.png';
+	import Sides from '$lib/assets/yam.png';
 	import Protein from '$lib/assets/protein.png';
 	import Fire from '$lib/assets/fire.png';
 	import Pot from '$lib/assets/Pot.png';
 	import ContactImg from '$lib/assets/contact-img.png';
 	import Arrow from '$lib/assets/Arrow.png';
 	import ArrowLeft from '$lib/assets/Arrow---Left-3.png';
+	import HeroBackground from '$lib/assets/hero-background.png';
+	import HeroImage1 from '$lib/assets/hero-image-1.svg';
+	import HeroImage1Sm from '$lib/assets/hero-image-1-sm.svg';
+	import HeroImage2 from '$lib/assets/hero-image-2.svg';
+	import HeroImage2Sm from '$lib/assets/hero-image-2-sm.svg';
+	import AboutUsBg from '$lib/assets/about-us-bg.svg';
+	import AboutUsBgSm from '$lib/assets/about-us-bg-sm.svg';
+	import { onMount } from 'svelte';
 
 	const steps = [
-		{ img: Jrice, label: 'Start with a Base', color: '#EE3300' },
-		{ img: Protein, label: 'Choose Protein', color: '#4C0703' },
-		{ img: Sauce, label: 'Add Sauce', color: '#FBAB1E' },
-		{ img: Yam, label: 'Pick Slides', color: '#104E44' },
-		{ img: Pepper, label: 'Garnish & Finish', color: '#EA6113' }
+		{
+			img: Base,
+			label: 'Start with a Base',
+			color: '#EE3300',
+			size: 'w-[201px] md:w-[150px] xl:[256px]'
+		},
+		{ img: Side, label: 'Add a Side', color: '#F76631', size: 'w-[182px] md:w-[150px] xl:[232px]' },
+		{
+			img: Protein,
+			label: 'Choose Protein',
+			color: '#4C0703',
+			size: 'w-[182px] md:w-[150px] xl:[232px]'
+		},
+		{ img: Sauce, label: 'Add Sauce', color: '#FBAB1E', size: 'w-[163px] md:w-[150px] xl:[217px]' },
+		{
+			img: Sides,
+			label: 'Pick Slides',
+			color: '#104E44',
+			size: 'w-[203px] md:w-[150px] xl:[259px]'
+		},
+		{
+			img: Garnish,
+			label: 'Garnish & Finish',
+			color: '#EA6113',
+			size: 'w-[120px] md:w-[80px] xl:w-[154px]'
+		}
 	];
 
 	let currentIndex = 0;
+	let carouselElement: HTMLDivElement | null = null;
 
-	const nextSlide = () => {
-		currentIndex = (currentIndex + 1) % steps.length;
-	};
+	// Navigation functions
+	function nextSlide() {
+		if (currentIndex < steps.length - 1) {
+			currentIndex++;
+		} else {
+			currentIndex = 0; // Loop back to first slide
+		}
+		updateCarousel();
+	}
 
-	const prevSlide = () => {
-		currentIndex = (currentIndex - 1 + steps.length) % steps.length;
-	};
+	function prevSlide() {
+		if (currentIndex > 0) {
+			currentIndex--;
+		} else {
+			currentIndex = steps.length - 1; // Loop to last slide
+		}
+		updateCarousel();
+	}
 
-	// Auto slide change every 5 seconds
-	import { onMount } from 'svelte';
+	function updateCarousel() {
+		if (carouselElement) {
+			carouselElement.style.transform = `translateX(-${currentIndex * 100}%)`;
+		}
+	}
+
 	onMount(() => {
-		const interval = setInterval(nextSlide, 5000);
-		return () => clearInterval(interval);
+		carouselElement = document.querySelector('.carousel-track');
+		updateCarousel();
 	});
 </script>
 
 <!-- ============================Hero section======================== -->
-<section class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0">
-	<!-- Background image -->
-	<div
-		class="absolute inset-0 bg-cover bg-center"
-		style="background-image: url('/background.png');"
-	></div>
-
-	<!-- Orange overlay with transparency using blend mode -->
-	<div class="absolute inset-0 bg-[#E7472C] opacity-80 mix-blend-multiply"></div>
-
+<section
+	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0"
+	style="background-image: url({HeroBackground}); background-size: contain; background-position: center;"
+>
 	<!-- Main centered content (logo, title, tagline, opening info) -->
 	<div
-		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 text-center text-white md:gap-20"
+		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 text-center text-white lg:gap-12 2xl:gap-20"
 	>
 		<!-- Yaji logo -->
-		<div class="w-full max-w-[127px] md:max-w-[270px]">
-			<img src={Name} alt="name" class="w-full" />
+		<div class="w-[127px] lg:w-[150px] 2xl:w-[272.77px]">
+			<img src={TextLogo} alt="name" class="w-full" />
 		</div>
 
 		<!-- Hero header text -->
 		<div class="w-full md:max-w-[500px]">
-			<h1 class="Permanent-Marker text-[40px] lg:text-[70px] leading-tight">Our Flavours<br />Served Bold!</h1>
+			<h1
+				class="Permanent-Marker text-[40px] leading-tight font-[600] lg:text-[50px] 2xl:text-[120px]"
+			>
+				Our Flavours<br />Served Bold!
+			</h1>
 		</div>
 
 		<!-- Tagline -->
-		<p class=" text-[15px] font-[600] lg:text-3xl">
+		<p class=" text-[15px] font-[600] lg:text-[20px] 2xl:text-[30px]">
 			We bring you vibrant Nigerian Flavours<br />
 			with Modern Convenience.
 		</p>
 
 		<!-- Opening notice and location -->
-		<div class="flex h-[60px] w-32 flex-col text-sm md:h-20 md:w-[173px] md:text-lg">
-			<p class="rounded-t-xl bg-[#FBAB13] px-2 py-1">Opening Soon</p>
-			<p class="rounded-b-xl bg-white px-2 py-1 text-[10px] text-black uppercase md:text-sm">
+		<div
+			class="flex w-32 flex-col overflow-hidden rounded-[16px] border-[2px] border-[#FBAB13] bg-[#FBAB13] md:w-[173px]"
+		>
+			<p
+				class="flex h-[36px] w-full items-center justify-center px-2 py-1 text-[13px] md:text-[18px]"
+			>
+				Opening Soon
+			</p>
+			<p
+				class="flex h-[44px] w-full items-center justify-center bg-white px-2 py-1 text-[10px] text-[#4C0703] uppercase md:text-[16px]"
+			>
 				from naija to dc!
 			</p>
 		</div>
 	</div>
 
 	<!--Floating hero images -->
-	<div class="relative flex flex-col items-center justify-end gap-0 md:static md:block h-79 md:h-auto">
-		<!-- Left-side puff puff image with overlay text -->
+	<div
+		class="relative flex h-79 flex-col items-center justify-end gap-0 md:static md:block md:h-auto"
+	>
+		<!-- Left-side -->
 		<div
-			class="w-full relative md:absolute -ml-90 sm:-ml-150 md:-ml-0 top-1/2 left-0 z-10 max-w-[277px] md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[400px] lg:max-w-[600px]"
+			class="relative top-1/2 left-0 z-10 -ml-90 w-full max-w-[277px] sm:-ml-150 md:absolute md:-ml-0 md:max-w-[400px] md:-translate-x-1/2 md:-translate-y-1/2 lg:max-w-[500px] 2xl:max-w-[600px]"
 		>
-			<div class="relative ">
-				<!-- Puff Puff image -->
-				<img src={PuffPuff} alt="puffpuff" class="w-full" />
-
-				<!-- "🔥 100% Authentic" label on puff puff -->
-				<div class="absolute top-[85%] right-[0px] z-10 lg:top-25">
-					<p class="rounded-xl bg-white px-2 py-2 md:px-5 md:py-3 font-medium text-black text-[12px]">
-						🔥 100% <span class="md:text-sm text-[10px] font-extralight">Authentic</span>
-					</p>
-				</div>
+			<div class="relative">
+				<!-- Hero image 1 -->
+				<img src={HeroImage1} alt="hero-1" class="hidden w-full md:block" />
+				<img src={HeroImage1Sm} alt="hero-1-sm" class="block w-full md:hidden" />
 			</div>
 		</div>
 
 		<!-- Right-side rice image with floating fire icon -->
 		<div
-			class="w-full relatve md:absolute -mr-60 sm:-mr-150 md:-mr-0 right-0 bottom-[0] z-10 max-w-[332px] md:translate-x-1/4 md:max-w-[400px] lg:max-w-[600px]"
+			class="relatve right-0 bottom-[0] z-10 -mr-60 w-full max-w-[332px] sm:-mr-150 md:absolute md:-mr-0 md:max-w-[400px] md:translate-x-1/4 lg:max-w-[500px] 2xl:max-w-[600px]"
 		>
 			<div class="relative">
-				<!-- Rice image -->
-				<img src={HeroRice} alt="rice" class="w-full" />
-
-				<!-- Floating fire image above rice -->
-				<div
-					class="absolute -top-[15%] left-[25%] z-10 w-30 md:-top-[25%] md:w-40 lg:-top-[20%] lg:w-55"
-				>
-					<img src={Fire} alt="fire" class="w-full" />
-				</div>
+				<!-- Hero image 2 -->
+				<img src={HeroImage2} alt="hero-2" class="hidden w-full md:block" />
+				<img src={HeroImage2Sm} alt="hero-2-sm" class="block w-full md:hidden" />
 			</div>
 		</div>
 	</div>
@@ -119,16 +160,16 @@
 
 <!-- ===============Introductory description============== -->
 <section
-	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20"
+	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20 md:gap-5 xl:gap-10"
 >
 	<!-- Section heading -->
-	<h1 class="Permanent-Marker text-[40px] font-medium text-[#4C0703] md:text-[70px]">
+	<h1 class="Permanent-Marker text-[40px] font-medium text-[#4C0703] 2xl:text-[70px]">
 		The Yaji Way!
 	</h1>
 
 	<!-- Introductory description about Yaji's concept -->
 	<div
-		class=" flex w-90 flex-col gap-5 text-center text-lg font-medium text-[#4C0703] md:w-109 md:text-3xl"
+		class="flex w-full flex-col gap-5 text-center text-[17px] font-medium text-[#4C0703] md:w-[500px] xl:w-[783px] xl:text-[30px]"
 	>
 		<p>
 			Yaji is the next evolution of West African flavour—a fast-casual restaurant built around bold,
@@ -140,14 +181,14 @@
 
 	<!-- Steps to build a Yaji meal: base, protein, sauce, sides, garnish -->
 	<!-- Desktop View: Grid Layout -->
-	<div class="hidden gap-3 lg:flex lg:flex-row">
+	<div class="hidden gap-5 lg:flex lg:flex-row">
 		{#each steps as step}
-			<div class=" flex flex-col items-center justify-center gap-3 text-white">
-				<div class="w-full max-w-50">
+			<div class="flex flex-col items-center justify-between gap-3 text-white">
+				<div class={step.size + ' flex h-full items-center justify-center'}>
 					<img src={step.img} alt="food" class="w-full" />
 				</div>
 				<p
-					class="w-35 rounded-lg py-3 text-center text-[16px]"
+					class="rounded-lg px-6 py-3 text-center text-[10px] xl:text-[20px]"
 					style="background-color: {step.color};"
 				>
 					{step.label}
@@ -157,58 +198,71 @@
 	</div>
 
 	<!-- Mobile View: Carousel -->
-	<div class="relative mx-auto w-full max-w-md px-5 py-16 lg:hidden">
-		<div class=" relative w-full overflow-hidden">
+	<div class="relative mx-auto w-full max-w-md px-5 lg:hidden flex flex-col items-center">
+		<div class="relative sm:w-full w-[322px] h-[396px] overflow-hidden rounded-[25px] bg-white pt-6 md:pt-9 flex flex-col items-center justify-between">
 			<div
-				class="flex w-full transition-transform duration-500 ease-in-out"
-				style="transform: translateX(-{currentIndex * 100}%)"
+				class="carousel-track flex w-full transition-transform duration-500 ease-in-out"
+				bind:this={carouselElement}
 			>
 				{#each steps as step, index}
-					<div class=" h-auto w-full flex-shrink-0 rounded-3xl bg-white">
-						<div class="flex h-full w-full flex-col justify-center gap-9 py-9">
-							<div class="mx-auto max-w-50">
-								<img src={step.img} alt={step.label} class="h-full w-full object-cover" />
+					<div class="h-auto w-full flex-shrink-0">
+						<div class="flex h-full w-full flex-col justify-center gap-4 md:gap-9">
+							<div class={step.size + " mx-auto flex h-full items-center justify-center"}>
+								<img src={step.img} alt={step.label} class="w-full" />
 							</div>
 							<div class="relative flex flex-col gap-9">
 								<div
-									class="bg-opacity-50 mx-auto w-[50%] transform rounded-lg p-4 shadow-lg"
-									style="background-color: {step.color}"
+									class="mx-auto w-[50%] transform rounded-lg p-4 shadow-lg"
+									style="background-color: {step.color}; opacity: 0.9;"
 								>
-									<p class="text-center text-sm text-white">{step.label}</p>
-								</div>
-								<div class="flex justify-center gap-10">
-									<button
-										class="h-12 w-12 transform rounded-full bg-[#F2F4F7] shadow-lg"
-										on:click={prevSlide}
-										aria-label="Previous"
-									>
-										<img src={ArrowLeft} alt="arrow" class="mx-auto" />
-									</button>
-									<button
-										class="h-12 w-12 transform rounded-full bg-[#F76631] shadow-lg"
-										on:click={nextSlide}
-										aria-label="Next"
-									>
-										<img src={Arrow} alt="arrow" class="mx-auto" />
-									</button>
+									<p class="text-center text-sm font-medium text-white">{step.label}</p>
 								</div>
 							</div>
 						</div>
 					</div>
 				{/each}
 			</div>
+
+			<!-- Navigation buttons -->
+			<div class="flex justify-center gap-10 pb-6 md:pb-9">
+				<button
+					class="h-12 w-12 transform rounded-full bg-[#F2F4F7] shadow-lg transition hover:bg-gray-200"
+					on:click={prevSlide}
+					aria-label="Previous"
+				>
+					<img src={ArrowLeft} alt="Previous" class="mx-auto" />
+				</button>
+				<button
+					class="h-12 w-12 transform rounded-full bg-[#F76631] shadow-lg transition hover:bg-[#E55520]"
+					on:click={nextSlide}
+					aria-label="Next"
+				>
+					<img src={Arrow} alt="Next" class="mx-auto" />
+				</button>
+			</div>
 		</div>
 	</div>
 </section>
 
 <!-- ============about section=================== -->
-<section class="relative min-h-[50vh] overflow-x-hidden py-20">
+<section class="relative overflow-x-hidden py-20">
 	<!-- Background image layer -->
-	<div class="absolute inset-0 bg-cover bg-center" style="background-image: url('/bg.png');"></div>
+	<div class="absolute inset-0 bg-cover bg-center">
+		<img
+			src={AboutUsBg}
+			alt="about-us-bg"
+			class="hidden h-full w-full object-cover md:block"
+		/>
+		<img
+			src={AboutUsBgSm}
+			alt="about-us-bg-sm"
+			class="block h-full w-full object-cover md:hidden"
+		/>
+	</div>
 
 	<!-- Content wrapper with z-index to appear above background -->
 	<div
-		class="relative z-10 flex h-full flex-col items-center justify-center gap-15 text-center text-[#FEE6B4]"
+		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 2xl:gap-15 text-center text-[#FEE6B4]"
 	>
 		<!-- Decorative fire and pot icons -->
 		<div class="flex flex-col gap-5">
@@ -236,32 +290,32 @@
 	class="relative z-0 flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#4C0703] px-10 py-20"
 >
 	<!-- Contact form card -->
-	<div class="w-full rounded-4xl bg-[#FEF0EA] p-7 md:max-w-209">
+	<div class="w-full rounded-[25px] md:rounded-[30px] bg-[#FEF0EA] p-5 md:max-w-209">
 		<div class="flex flex-col items-center gap-5 md:flex-row lg:gap-20">
 			<!-- Left: Image beside form -->
-			<div class="w-full overflow-hidden rounded-4xl md:max-w-50">
+			<div class="w-full overflow-hidden rounded-[10px] md:rounded-[20px] md:max-w-50">
 				<img src={ContactImg} alt="contact-img" class="object-contain" />
 			</div>
 
 			<!-- Right: Signup form content -->
 			<div class=" w-full text-center md:text-left">
-				<h1 class="text-xl font-[600] text-[#4C0703] md:text-3xl">Get the first taste!</h1>
-				<p class="text-sm font-normal text-[#4C0703] md:w-90 md:text-xl">
+				<h1 class="text-[30px] font-[600] text-[#4C0703] md:text-[35px] xl:text-[50px]">Get the first taste!</h1>
+				<p class="text-[15px] font-normal text-[#4C0703] md:w-90 md:text-[15px]">
 					Be the first to know when we open Sign up to join our waitlist
 				</p>
 
 				<!-- Email input and submit button -->
 				<div
-					class="mt-10 flex h-[41px] w-[100%] items-center rounded-2xl border border-[#f766315e] bg-white p-1 md:h-16 md:w-full"
+					class="mt-10 flex h-[41px] w-[100%] items-center rounded-[10px] border border-[#f766315e] bg-white p-1 md:h-16 md:w-full overflow-hidden"
 				>
 					<input
 						type="email"
 						placeholder="your.email@example.com"
-						class="h-4 w-[90%] border-0 bg-white text-black outline-white focus:ring-0 focus:outline-none md:h-6"
+						class="w-[90%] border-0 bg-white text-black outline-white focus:ring-0 focus:outline-none md:h-6 pl-2 pt-1"
 					/>
 					<button
 						type="button"
-						class="flex h-8 w-[82px] flex-row items-center justify-center rounded-lg bg-[#F76631] text-white md:h-14 md:w-[160px] md:rounded-2xl"
+						class="flex h-8 w-[82px] flex-row items-center justify-center rounded-lg bg-[#F76631] text-white md:h-14 md:w-[160px]"
 					>
 						<span class="text-[10px] md:text-[16px]">Submit</span>
 						<img src={Arrow} alt="arrow" class="w-3 md:w-6" />
@@ -275,11 +329,11 @@
 	<h1
 		class="Permanent-Marker flex justify-center text-center text-4xl font-medium text-[#FEE6B4] md:text-5xl"
 	>
-		Follow The Story
+		Follow The <br class="block md:hidden" /> Story
 	</h1>
-	<ul class="Plus Jakarta-Sans text-center text-2xl font-light text-white underline md:text-sm">
-		<li><a href="#">Instagram</a></li>
-		<li><a href="#">Twitter</a></li>
-		<li><a href="#">Facebook</a></li>
+	<ul class="Plus Jakarta-Sans text-center font-light text-white underline">
+		<li><a href="#" class="text-[25px]">Instagram</a></li>
+		<li><a href="#" class="text-[25px]">Twitter</a></li>
+		<li><a href="#" class="text-[25px]">Facebook</a></li>
 	</ul>
 </section>
