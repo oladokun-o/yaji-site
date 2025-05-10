@@ -85,7 +85,7 @@
 
 <!-- ============================Hero section======================== -->
 <section
-	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0 -mb-90 md:-mb-0"
+	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0 -mb-60 md:-mb-0"
 	style="background-image: url({HeroBackground}); background-size: contain; background-position: center;"
 >
 	<!-- Main centered content (logo, title, tagline, opening info) -->
