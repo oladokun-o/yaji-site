@@ -85,7 +85,7 @@
 
 <!-- ============================Hero section======================== -->
 <section
-	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0"
+	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0 -mb-90 md:-mb-0"
 	style="background-image: url({HeroBackground}); background-size: contain; background-position: center;"
 >
 	<!-- Main centered content (logo, title, tagline, opening info) -->
@@ -135,7 +135,7 @@
 	>
 		<!-- Left-side -->
 		<div
-			class="relative top-1/2 left-0 z-10 -ml-90 w-full max-w-[277px] sm:-ml-150 md:absolute md:-ml-0 md:max-w-[400px] md:-translate-x-1/2 md:-translate-y-1/2 lg:max-w-[500px] 2xl:max-w-[600px]"
+			class="relative top-1/2 left-0 lg:left-19 xl:left-50 z-10 -ml-90 w-full max-w-[277px] sm:-ml-150 md:absolute md:-ml-0 md:max-w-[400px] md:-translate-x-1/2 md:-translate-y-1/2 lg:max-w-[500px] 2xl:max-w-[600px]"
 		>
 			<div class="relative">
 				<!-- Hero image 1 -->
@@ -146,7 +146,7 @@
 
 		<!-- Right-side rice image with floating fire icon -->
 		<div
-			class="relatve right-0 bottom-[0] z-10 -mr-60 w-full max-w-[332px] sm:-mr-150 md:absolute md:-mr-0 md:max-w-[400px] md:translate-x-1/4 lg:max-w-[500px] 2xl:max-w-[600px]"
+			class="relatve right-0 bottom-[0] lg:right-19 xl:right-20 z-10 -mr-60 w-full max-w-[332px] sm:-mr-150 md:absolute md:-mr-0 md:max-w-[400px] md:translate-x-1/4 lg:max-w-[500px] 2xl:max-w-[600px]"
 		>
 			<div class="relative">
 				<!-- Hero image 2 -->
