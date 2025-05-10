@@ -48,11 +48,11 @@
 	></div>
 
 	<!-- Orange overlay with transparency using blend mode -->
-	<div class="absolute inset-0 bg-[#EE3300] opacity-80 mix-blend-multiply"></div>
+	<div class="absolute inset-0 bg-[#E7472C] opacity-80 mix-blend-multiply"></div>
 
 	<!-- Main centered content (logo, title, tagline, opening info) -->
 	<div
-		class="relative z-10 flex h-full flex-col items-center justify-center gap-10 text-center text-white md:gap-20"
+		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 text-center text-white md:gap-20"
 	>
 		<!-- Yaji logo -->
 		<div class="w-full max-w-[127px] md:max-w-[270px]">
@@ -61,7 +61,7 @@
 
 		<!-- Hero header text -->
 		<div class="w-full md:max-w-[500px]">
-			<h1 class="Permanent-Marker text-[40px] lg:text-[70px]">Our Flavours<br />Served Bold!</h1>
+			<h1 class="Permanent-Marker text-[40px] lg:text-[70px] leading-tight">Our Flavours<br />Served Bold!</h1>
 		</div>
 
 		<!-- Tagline -->
@@ -79,19 +79,20 @@
 		</div>
 	</div>
 
-	<div class="relative md:static">
+	<!--Floating hero images -->
+	<div class="relative flex flex-col items-center justify-end gap-0 md:static md:block h-79 md:h-auto">
 		<!-- Left-side puff puff image with overlay text -->
 		<div
-			class="w-ful absolute top-1/2 left-0 z-10 max-w-[300px] -translate-x-1/2 -translate-y-1/2 md:max-w-[400px] lg:max-w-[600px]"
+			class="w-full relative md:absolute -ml-90 sm:-ml-150 md:-ml-0 top-1/2 left-0 z-10 max-w-[277px] md:-translate-x-1/2 md:-translate-y-1/2 md:max-w-[400px] lg:max-w-[600px]"
 		>
-			<div class="relative">
+			<div class="relative ">
 				<!-- Puff Puff image -->
 				<img src={PuffPuff} alt="puffpuff" class="w-full" />
 
 				<!-- "🔥 100% Authentic" label on puff puff -->
 				<div class="absolute top-[85%] right-[0px] z-10 lg:top-25">
-					<p class="rounded-xl bg-white px-5 py-3 font-medium text-black">
-						🔥 100% <span class="text-sm font-extralight">Authentic</span>
+					<p class="rounded-xl bg-white px-2 py-2 md:px-5 md:py-3 font-medium text-black text-[12px]">
+						🔥 100% <span class="md:text-sm text-[10px] font-extralight">Authentic</span>
 					</p>
 				</div>
 			</div>
@@ -99,7 +100,7 @@
 
 		<!-- Right-side rice image with floating fire icon -->
 		<div
-			class="w-ful absolute right-0 bottom-[0] z-10 max-w-[300px] translate-x-1/4 md:max-w-[400px] lg:max-w-[600px]"
+			class="w-full relatve md:absolute -mr-60 sm:-mr-150 md:-mr-0 right-0 bottom-[0] z-10 max-w-[332px] md:translate-x-1/4 md:max-w-[400px] lg:max-w-[600px]"
 		>
 			<div class="relative">
 				<!-- Rice image -->
@@ -107,7 +108,7 @@
 
 				<!-- Floating fire image above rice -->
 				<div
-					class="absolute -top-[10%] left-[25%] z-10 w-20 md:-top-[25%] md:w-40 lg:-top-[20%] lg:w-55"
+					class="absolute -top-[15%] left-[25%] z-10 w-30 md:-top-[25%] md:w-40 lg:-top-[20%] lg:w-55"
 				>
 					<img src={Fire} alt="fire" class="w-full" />
 				</div>
@@ -142,10 +143,13 @@
 	<div class="hidden gap-3 lg:flex lg:flex-row">
 		{#each steps as step}
 			<div class=" flex flex-col items-center justify-center gap-3 text-white">
-				<div class="max-w-50 w-full">
+				<div class="w-full max-w-50">
 					<img src={step.img} alt="food" class="w-full" />
 				</div>
-				<p class="w-35 rounded-lg py-3 text-center text-[16px]" style="background-color: {step.color};">
+				<p
+					class="w-35 rounded-lg py-3 text-center text-[16px]"
+					style="background-color: {step.color};"
+				>
 					{step.label}
 				</p>
 			</div>
@@ -170,7 +174,7 @@
 									class="bg-opacity-50 mx-auto w-[50%] transform rounded-lg p-4 shadow-lg"
 									style="background-color: {step.color}"
 								>
-									<p class="text-center text-white text-sm">{step.label}</p>
+									<p class="text-center text-sm text-white">{step.label}</p>
 								</div>
 								<div class="flex justify-center gap-10">
 									<button
@@ -248,16 +252,16 @@
 
 				<!-- Email input and submit button -->
 				<div
-					class="mt-10 flex w-[100%] rounded-2xl border border-[#f766315e] bg-white p-1 md:w-full items-center h-[41px] md:h-16"
+					class="mt-10 flex h-[41px] w-[100%] items-center rounded-2xl border border-[#f766315e] bg-white p-1 md:h-16 md:w-full"
 				>
 					<input
 						type="email"
 						placeholder="your.email@example.com"
-						class="h-4 md:h-6 w-[90%] border-0 bg-white text-black focus:outline-none focus:ring-0 outline-white"
+						class="h-4 w-[90%] border-0 bg-white text-black outline-white focus:ring-0 focus:outline-none md:h-6"
 					/>
 					<button
 						type="button"
-						class="flex flex-row items-center justify-center md:rounded-2xl rounded-lg bg-[#F76631] text-white w-[82px] md:w-[160px] h-8 md:h-14"
+						class="flex h-8 w-[82px] flex-row items-center justify-center rounded-lg bg-[#F76631] text-white md:h-14 md:w-[160px] md:rounded-2xl"
 					>
 						<span class="text-[10px] md:text-[16px]">Submit</span>
 						<img src={Arrow} alt="arrow" class="w-3 md:w-6" />

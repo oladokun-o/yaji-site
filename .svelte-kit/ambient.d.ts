@@ -119,6 +119,7 @@ declare module '$env/static/private' {
 	export const GOPATH: string;
 	export const npm_package_version: string;
 	export const npm_lifecycle_event: string;
+	export const NODE_PATH: string;
 	export const rvm_prefix: string;
 	export const GEM_HOME: string;
 	export const LESSCLOSE: string;
@@ -277,6 +278,7 @@ declare module '$env/dynamic/private' {
 		GOPATH: string;
 		npm_package_version: string;
 		npm_lifecycle_event: string;
+		NODE_PATH: string;
 		rvm_prefix: string;
 		GEM_HOME: string;
 		LESSCLOSE: string;
