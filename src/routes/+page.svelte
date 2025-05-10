@@ -28,7 +28,6 @@
 			color: '#EE3300',
 			size: 'w-[201px] md:w-[150px] xl:[256px]'
 		},
-		{ img: Side, label: 'Add a Side', color: '#F76631', size: 'w-[182px] md:w-[150px] xl:[232px]' },
 		{
 			img: Protein,
 			label: 'Choose Protein',
@@ -169,7 +168,7 @@
 
 	<!-- Introductory description about Yaji's concept -->
 	<div
-		class="flex w-full flex-col gap-5 text-center text-[17px] font-medium text-[#4C0703] md:w-[500px] xl:w-[783px] xl:text-[30px]"
+		class="flex w-full flex-col gap-5 px-5 text-center text-[17px] font-medium text-[#4C0703] md:w-[500px] md:px-0 xl:w-[783px] xl:text-[30px]"
 	>
 		<p>
 			Yaji is the next evolution of West African flavour—a fast-casual restaurant built around bold,
@@ -198,8 +197,10 @@
 	</div>
 
 	<!-- Mobile View: Carousel -->
-	<div class="relative mx-auto w-full max-w-md px-5 lg:hidden flex flex-col items-center">
-		<div class="relative sm:w-full w-[322px] h-[396px] overflow-hidden rounded-[25px] bg-white pt-6 md:pt-9 flex flex-col items-center justify-between">
+	<div class="relative mx-auto flex w-full max-w-md flex-col items-center px-5 md:mt-10 lg:hidden">
+		<div
+			class="relative flex h-[396px] w-[322px] flex-col items-center justify-between overflow-hidden rounded-[25px] bg-white pt-6 sm:w-full md:pt-9"
+		>
 			<div
 				class="carousel-track flex w-full transition-transform duration-500 ease-in-out"
 				bind:this={carouselElement}
@@ -207,7 +208,7 @@
 				{#each steps as step, index}
 					<div class="h-auto w-full flex-shrink-0">
 						<div class="flex h-full w-full flex-col justify-center gap-4 md:gap-9">
-							<div class={step.size + " mx-auto flex h-full items-center justify-center"}>
+							<div class={step.size + ' mx-auto flex h-full items-center justify-center'}>
 								<img src={step.img} alt={step.label} class="w-full" />
 							</div>
 							<div class="relative flex flex-col gap-9">
@@ -225,19 +226,35 @@
 
 			<!-- Navigation buttons -->
 			<div class="flex justify-center gap-10 pb-6 md:pb-9">
-				<button
-					class="h-12 w-12 transform rounded-full bg-[#F2F4F7] shadow-lg transition hover:bg-gray-200"
-					on:click={prevSlide}
-					aria-label="Previous"
-				>
-					<img src={ArrowLeft} alt="Previous" class="mx-auto" />
+				<button class="nav-btn prev" on:click={prevSlide} aria-label="Previous">
+					<svg
+						width="20"
+						height="12"
+						viewBox="0 0 20 12"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							d="M9.84281 11.9019C10.1028 11.7642 10.2649 11.5023 10.2649 11.2175V6.7825H19.1841C19.6345 6.7825 20 6.43195 20 6.00003C20 5.56811 19.6345 5.21756 19.1841 5.21756H10.2649V0.782525C10.2649 0.496663 10.1028 0.234796 9.84281 0.0981252C9.58281 -0.0406327 9.26516 -0.0312431 9.01387 0.120034L0.380745 5.33754C0.143595 5.48151 0 5.73086 0 6.00003C0 6.2692 0.143595 6.51854 0.380745 6.66252L9.01387 11.88C9.14659 11.9593 9.2978 12 9.44901 12C9.5839 12 9.71988 11.9666 9.84281 11.9019Z"
+							class="icon-path"
+						/>
+					</svg>
 				</button>
-				<button
-					class="h-12 w-12 transform rounded-full bg-[#F76631] shadow-lg transition hover:bg-[#E55520]"
-					on:click={nextSlide}
-					aria-label="Next"
-				>
-					<img src={Arrow} alt="Next" class="mx-auto" />
+
+				<button class="nav-btn next" on:click={nextSlide} aria-label="Next">
+					<svg
+						width="20"
+						height="12"
+						viewBox="0 0 20 12"
+						fill="none"
+						xmlns="http://www.w3.org/2000/svg"
+						class="rotate-180"
+					>
+						<path
+							d="M9.84281 11.9019C10.1028 11.7642 10.2649 11.5023 10.2649 11.2175V6.7825H19.1841C19.6345 6.7825 20 6.43195 20 6.00003C20 5.56811 19.6345 5.21756 19.1841 5.21756H10.2649V0.782525C10.2649 0.496663 10.1028 0.234796 9.84281 0.0981252C9.58281 -0.0406327 9.26516 -0.0312431 9.01387 0.120034L0.380745 5.33754C0.143595 5.48151 0 5.73086 0 6.00003C0 6.2692 0.143595 6.51854 0.380745 6.66252L9.01387 11.88C9.14659 11.9593 9.2978 12 9.44901 12C9.5839 12 9.71988 11.9666 9.84281 11.9019Z"
+							class="icon-path"
+						/>
+					</svg>
 				</button>
 			</div>
 		</div>
@@ -248,11 +265,7 @@
 <section class="relative overflow-x-hidden py-20">
 	<!-- Background image layer -->
 	<div class="absolute inset-0 bg-cover bg-center">
-		<img
-			src={AboutUsBg}
-			alt="about-us-bg"
-			class="hidden h-full w-full object-cover md:block"
-		/>
+		<img src={AboutUsBg} alt="about-us-bg" class="hidden h-full w-full object-cover md:block" />
 		<img
 			src={AboutUsBgSm}
 			alt="about-us-bg-sm"
@@ -262,7 +275,7 @@
 
 	<!-- Content wrapper with z-index to appear above background -->
 	<div
-		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 2xl:gap-15 text-center text-[#FEE6B4]"
+		class="relative z-10 flex h-full flex-col items-center justify-center gap-5 text-center text-[#FEE6B4] 2xl:gap-15"
 	>
 		<!-- Decorative fire and pot icons -->
 		<div class="flex flex-col gap-5">
@@ -290,28 +303,30 @@
 	class="relative z-0 flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#4C0703] px-10 py-20"
 >
 	<!-- Contact form card -->
-	<div class="w-full rounded-[25px] md:rounded-[30px] bg-[#FEF0EA] p-5 md:max-w-209">
+	<div class="w-full rounded-[25px] bg-[#FEF0EA] p-5 md:max-w-209 md:rounded-[30px]">
 		<div class="flex flex-col items-center gap-5 md:flex-row lg:gap-20">
 			<!-- Left: Image beside form -->
-			<div class="w-full overflow-hidden rounded-[10px] md:rounded-[20px] md:max-w-50">
+			<div class="w-full overflow-hidden rounded-[10px] md:max-w-50 md:rounded-[20px]">
 				<img src={ContactImg} alt="contact-img" class="object-contain" />
 			</div>
 
 			<!-- Right: Signup form content -->
 			<div class=" w-full text-center md:text-left">
-				<h1 class="text-[30px] font-[600] text-[#4C0703] md:text-[35px] xl:text-[50px]">Get the first taste!</h1>
+				<h1 class="text-[30px] font-[600] text-[#4C0703] md:text-[35px] xl:text-[50px]">
+					Get the first taste!
+				</h1>
 				<p class="text-[15px] font-normal text-[#4C0703] md:w-90 md:text-[15px]">
 					Be the first to know when we open Sign up to join our waitlist
 				</p>
 
 				<!-- Email input and submit button -->
 				<div
-					class="mt-10 flex h-[41px] w-[100%] items-center rounded-[10px] border border-[#f766315e] bg-white p-1 md:h-16 md:w-full overflow-hidden"
+					class="mt-10 flex h-[41px] w-[100%] items-center overflow-hidden rounded-[10px] border border-[#f766315e] bg-white p-1 md:h-16 md:w-full"
 				>
 					<input
 						type="email"
 						placeholder="your.email@example.com"
-						class="w-[90%] border-0 bg-white text-black outline-white focus:ring-0 focus:outline-none md:h-6 pl-2 pt-1"
+						class="w-[90%] border-0 bg-white pt-1 pl-2 text-black outline-white focus:ring-0 focus:outline-none md:h-6"
 					/>
 					<button
 						type="button"
@@ -337,3 +352,32 @@
 		<li><a href="#" class="text-[25px]">Facebook</a></li>
 	</ul>
 </section>
+
+<style>
+	.nav-btn {
+		height: 3rem;
+		width: 3rem;
+		border-radius: 9999px;
+		border: 1px solid #f2f4f7;
+		background-color: white;
+		transition: all 0.3s ease;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+	}
+
+	.nav-btn .icon-path {
+		fill: #667085;
+		transition: fill 0.3s ease;
+	}
+
+	.nav-btn:hover {
+		border-color: #f76631;
+		background-color: #f76631;
+	}
+
+	.nav-btn:hover .icon-path {
+		fill: white;
+	}
+</style>
