@@ -85,7 +85,7 @@
 
 <!-- ============================Hero section======================== -->
 <section
-	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0 -mb-60 md:-mb-0"
+	class="relative flex min-h-screen flex-col gap-30 overflow-x-hidden py-20 pb-56 md:gap-0 -mb-80 md:-mb-0"
 	style="background-image: url({HeroBackground}); background-size: contain; background-position: center;"
 >
 	<!-- Main centered content (logo, title, tagline, opening info) -->
@@ -159,7 +159,7 @@
 
 <!-- ===============Introductory description============== -->
 <section
-	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20 md:gap-5 xl:gap-10"
+	class="relative z-0 -mt-[150px] flex min-h-screen flex-col items-center justify-center gap-10 overflow-x-hidden bg-[#FEE6B4] py-20 md:gap-5 xl:gap-10 pt-20 md:pt-0"
 >
 	<!-- Section heading -->
 	<h1 class="Permanent-Marker text-[40px] font-medium text-[#4C0703] 2xl:text-[70px]">
