@@ -102,13 +102,13 @@
 			<h1
 				class="Permanent-Marker text-[40px] leading-tight font-[600] lg:text-[50px] 2xl:text-[120px]"
 			>
-				Our Flavours<br />Served Bold!
+				Our Flavors<br />Served Bold!
 			</h1>
 		</div>
 
 		<!-- Tagline -->
 		<p class=" text-[15px] font-[600] lg:text-[20px] 2xl:text-[30px]">
-			We bring you vibrant Nigerian Flavours<br />
+			We bring you vibrant Nigerian Flavors<br />
 			with Modern Convenience.
 		</p>
 
@@ -171,7 +171,7 @@
 		class="flex w-full flex-col gap-5 px-5 text-center text-[17px] font-medium text-[#4C0703] md:w-[500px] md:px-0 xl:w-[783px] xl:text-[30px]"
 	>
 		<p>
-			Yaji is the next evolution of West African flavour—a fast-casual restaurant built around bold,
+			Yaji is the next evolution of West African flavor—a fast-casual restaurant built around bold,
 			fire-kissed bowls, wraps, and tacos. Inspired by suya culture.
 		</p>
 		<p>Made to move with you.</p>
@@ -291,7 +291,7 @@
 			<p>
 				Yaji was born from a craving—something deeper than hunger. A craving for food that feels
 				familiar yet fresh, rooted in heritage but made for now. Inspired by the bold heat of suya
-				spice, Yaji is a love letter to our flavour, our fire, and our people.
+				spice, Yaji is a love letter to our flavor, our fire, and our people.
 			</p>
 			<p>More than food—it’s culture, served bold.</p>
 		</div>
